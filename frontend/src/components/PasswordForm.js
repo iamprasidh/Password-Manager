@@ -3,6 +3,38 @@ import { AuthContext } from '../context/AuthContext';
 import '../styles/Dashboard.css';
 
 const PasswordForm = ({ initialData = {}, onSubmit, onCancel }) => {
+  const generatePassword = () => {
+    const length = 16;
+    const charset = {
+      uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      lowercase: 'abcdefghijklmnopqrstuvwxyz',
+      numbers: '0123456789',
+      symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
+    };
+
+    let password = '';
+    const allChars = Object.values(charset).join('');
+
+    // Ensure at least one character from each set
+    password += charset.uppercase[Math.floor(Math.random() * charset.uppercase.length)];
+    password += charset.lowercase[Math.floor(Math.random() * charset.lowercase.length)];
+    password += charset.numbers[Math.floor(Math.random() * charset.numbers.length)];
+    password += charset.symbols[Math.floor(Math.random() * charset.symbols.length)];
+
+    // Fill the rest with random characters
+    for (let i = password.length; i < length; i++) {
+      password += allChars[Math.floor(Math.random() * allChars.length)];
+    }
+
+    // Shuffle the password
+    password = password.split('').sort(() => Math.random() - 0.5).join('');
+
+    setFormData(prev => ({
+      ...prev,
+      password
+    }));
+  };
+
   const [formData, setFormData] = useState({
     title: initialData.title || '',
     username: initialData.username || '',
@@ -110,6 +142,14 @@ const PasswordForm = ({ initialData = {}, onSubmit, onCancel }) => {
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? 'Hide' : 'Show'}
+          </button>
+          <button
+            type="button"
+            className="generate-password-btn"
+            onClick={generatePassword}
+            title="Generate Strong Password"
+          >
+            Generate
           </button>
         </div>
       </div>
