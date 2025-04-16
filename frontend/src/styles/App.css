@@ -22,13 +22,45 @@ body {
   flex-direction: column;
 }
 
+.navbar {
+  background: #ffffff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar-brand img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
 .App-header {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--glass-border);
-  color: white;
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid #e0e0e0;
+  color: var(--text-color);
   padding: 20px 32px;
-  box-shadow: 0 8px 32px var(--glass-shadow);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   position: relative;
   z-index: 10;
 }
@@ -38,10 +70,20 @@ body {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-color);
+  text-shadow: none;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Remove any glass effects */
+:root {
+  --glass-bg: transparent;
+  --glass-border: #e0e0e0;
+  --glass-shadow: rgba(0, 0, 0, 0.05);
 }
 
 main {
