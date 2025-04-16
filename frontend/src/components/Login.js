@@ -89,35 +89,33 @@ const Login = () => {
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
-            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder=" "
               required
             />
+            <label htmlFor="email">Email</label>
           </div>
           <div className="form-group">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="masterPassword"
+              value={masterPassword}
+              onChange={(e) => setMasterPassword(e.target.value)}
+              placeholder=" "
+              required
+            />
             <label htmlFor="masterPassword">Master Password</label>
-            <div className="password-field">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="masterPassword"
-                value={masterPassword}
-                onChange={(e) => setMasterPassword(e.target.value)}
-                placeholder="Enter your master password"
-                required
-              />
-              <button 
-                type="button" 
-                className="toggle-password-btn"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? 'Hide' : 'Show'}
-              </button>
-            </div>
+            <button 
+              type="button" 
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
             <small className="password-hint">
               This is your encryption key. You cannot recover your passwords without it.
             </small>
