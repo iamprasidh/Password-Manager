@@ -2,31 +2,37 @@
 
 /* Reusing variables from Auth.css for consistency */
 :root {
-  --primary-color: #6C63FF;
-  --secondary-color: #F0F2F5;
+  /* Modern Color Palette */
+  --primary-color: #4A90E2; /* Softer Blue */
+  --secondary-color: #F7F9FC; /* Lighter, cleaner background */
   --background-color: #FFFFFF;
-  --text-color: #333333;
-  --input-bg-color: #F9F9F9;
-  --input-border-color: #E0E0E0;
-  --button-hover-bg: #5A52E0;
-  --error-color: #E74C3C;
-  --success-color: #2ECC71;
-  --link-color: #6C63FF;
-  --link-hover-color: #5A52E0;
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --border-radius: 8px;
+  --text-color: #24292E; /* Darker Gray for better contrast */
+  --text-secondary: #586069; /* Slightly lighter secondary text */
+  --input-bg-color: #FFFFFF;
+  --input-border-color: #D1D5DA; /* Subtle border */
+  --button-hover-bg: #357ABD; /* Darker shade for hover */
+  --error-color: #D73A49; /* Standard GitHub error red */
+  --success-color: #28A745; /* Standard GitHub success green */
+  --link-color: #0366D6; /* Standard link blue */
+  --link-hover-color: #005CC5;
+
+  /* Refined Shadows & Borders */
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --border-radius: 6px; /* Slightly smaller radius */
   --card-bg: #FFFFFF;
-  --card-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
-  --text-secondary: #666;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --border-color: #E1E4E8; /* Consistent border color */
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background-color: var(--secondary-color);
   color: var(--text-color);
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  line-height: 1.5; /* Slightly tighter line height */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .dashboard-container {
@@ -39,6 +45,66 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* Skeleton Loading Styles */
+.skeleton-item {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* Important for shimmer effect */
+  position: relative; /* Important for shimmer effect */
+}
+
+.skeleton-line {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  height: 1em; /* Default height, can be overridden */
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-title {
+  height: 1.2rem; /* Match h4 size */
+  width: 60%;
+  margin-bottom: 1rem;
+}
+
+.skeleton-text {
+  height: 1rem; /* Match text size */
+  width: 80%;
+}
+
+.skeleton-button {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--border-radius);
+  width: 36px; /* Approximate button size */
+  height: 36px; /* Approximate button size */
+}
+
+.skeleton-copy-button {
+  width: 80px; /* Approximate copy button size */
+  height: 30px;
+}
+
+.password-item.skeleton-item .password-item-header,
+.password-item.skeleton-item .password-value {
+  opacity: 0.7; /* Make skeleton slightly transparent */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .dashboard-header {
@@ -81,7 +147,7 @@ body {
 
 .logout-button {
   background-color: transparent;
-  border: 1px solid #E0E0E0;
+  border: 1px solid var(--border-color); /* Use variable */
   color: var(--text-secondary);
   padding: 0.6rem 1.2rem;
   border-radius: var(--border-radius);
@@ -100,9 +166,9 @@ body {
 }
 
 .logout-button:hover {
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-  background-color: rgba(108, 99, 255, 0.05);
+  border-color: var(--link-hover-color); /* Use link hover color */
+  color: var(--link-hover-color);
+  background-color: rgba(var(--primary-color), 0.05); /* Use primary color with alpha */
 }
 
 .dashboard-actions {
@@ -121,11 +187,11 @@ body {
   cursor: pointer;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 2px 5px rgba(108, 99, 255, 0.3);
+  box-shadow: 0 2px 5px rgba(74, 144, 226, 0.3); /* Adjusted shadow color */
 }
 
 .add-password-button svg {
@@ -157,13 +223,74 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Skeleton Loading Styles */
+.skeleton-item {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* Important for shimmer effect */
+  position: relative; /* Important for shimmer effect */
+}
+
+.skeleton-line {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  height: 1em; /* Default height, can be overridden */
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-title {
+  height: 1.2rem; /* Match h4 size */
+  width: 60%;
+  margin-bottom: 1rem;
+}
+
+.skeleton-text {
+  height: 1rem; /* Match text size */
+  width: 80%;
+}
+
+.skeleton-button {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--border-radius);
+  width: 36px; /* Approximate button size */
+  height: 36px; /* Approximate button size */
+}
+
+.skeleton-copy-button {
+  width: 80px; /* Approximate copy button size */
+  height: 30px;
+}
+
+.password-item.skeleton-item .password-item-header,
+.password-item.skeleton-item .password-value {
+  opacity: 0.7; /* Make skeleton slightly transparent */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 .password-form-container h3 {
   margin-top: 0;
+  margin-top: 0;
   margin-bottom: 1.5rem;
-  color: var(--primary-color);
+  color: var(--text-color); /* Use standard text color */
   font-weight: 600;
   font-size: 1.4rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color); /* Use variable */
   padding-bottom: 0.8rem;
 }
 
@@ -206,7 +333,7 @@ body {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); /* Adjusted focus shadow color */
 }
 
 .password-field {
@@ -227,8 +354,8 @@ body {
 
 .toggle-password-btn,
 .generate-password-btn {
-  background-color: var(--secondary-color);
-  border: 1px solid var(--input-border-color);
+  background-color: var(--background-color); /* Use white background */
+  border: 1px solid var(--border-color); /* Use standard border */
   color: var(--text-secondary);
   border-radius: var(--border-radius);
   padding: 0.6rem 0.8rem;
@@ -248,9 +375,9 @@ body {
 
 .toggle-password-btn:hover,
 .generate-password-btn:hover {
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-  background-color: rgba(108, 99, 255, 0.05);
+  border-color: var(--link-color); /* Use link color for consistency */
+  color: var(--link-color);
+  background-color: rgba(74, 144, 226, 0.05); /* Adjusted hover background */
 }
 
 .form-actions {
@@ -282,20 +409,21 @@ body {
 }
 
 .submit-button:disabled {
-  background-color: #B0AACC;
+  background-color: #AECBFA; /* Lighter blue for disabled */
   cursor: not-allowed;
   transform: none;
+  box-shadow: none;
 }
 
 .cancel-button {
-  background-color: var(--secondary-color);
+  background-color: var(--background-color); /* White background */
   color: var(--text-secondary);
-  border: 1px solid var(--input-border-color);
+  border: 1px solid var(--border-color); /* Use standard border */
 }
 
 .cancel-button:hover {
-  background-color: #E8E8E8;
-  border-color: #ccc;
+  background-color: #F7F9FC; /* Use secondary background on hover */
+  border-color: #D1D5DA; /* Use input border color */
 }
 
 /* Passwords List */
@@ -305,10 +433,11 @@ body {
 
 .passwords-list h3 {
   margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
   color: var(--text-color);
   font-weight: 600;
   font-size: 1.4rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color); /* Use variable */
   padding-bottom: 0.8rem;
 }
 
@@ -342,7 +471,7 @@ body {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--text-color); /* Use standard text color */
   word-break: break-all; /* Prevent long names from overflowing */
 }
 
@@ -353,8 +482,8 @@ body {
 }
 
 .password-item-actions button {
-  background: #fff;
-  border: 1px solid var(--input-border-color);
+  background: var(--background-color);
+  border: 1px solid var(--border-color); /* Use variable */
   color: var(--text-secondary);
   cursor: pointer;
   padding: 0.5rem;
@@ -365,63 +494,69 @@ body {
 }
 
 .password-item-actions button.edit-button {
-  color: #4CAF50;
-  border-color: #4CAF50;
+  color: var(--success-color); /* Use variable */
+  border-color: var(--success-color); /* Use variable */
 }
 
 .password-item-actions button.edit-button:hover {
-  background-color: #4CAF50;
+  background-color: var(--success-color); /* Use variable */
   color: white;
 }
 
 .password-item-actions button.delete-button {
-  color: var(--error-color);
-  border-color: var(--error-color);
+  color: var(--error-color); /* Use variable */
+  border-color: var(--error-color); /* Use variable */
 }
 
 .password-item-actions button.delete-button:hover {
-  background-color: var(--error-color);
+  background-color: var(--error-color); /* Use variable */
   color: white;
 }
 
-/* Enhanced Password Items */
+/* Enhanced Password Items (Remove duplicate rule, handled above) */
+/*
 .password-item {
-  background: #ffffff;
+  background: var(--card-bg); 
   border-radius: var(--border-radius);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--card-shadow); 
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #eef0f7;
+  border: 1px solid var(--border-color); 
   transition: all 0.3s ease;
 }
+*/
 
 .password-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07); /* Slightly stronger hover shadow */
   border-color: var(--primary-color);
 }
 
 .password-value {
-  background: var(--input-bg-color);
+  background: var(--secondary-color); /* Use lighter background for contrast */
   border-radius: var(--border-radius);
   padding: 0.8rem;
   margin-top: 0.5rem;
+  display: flex; /* Use flex for alignment */
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
 }
 
 .password-value span {
   font-family: 'Courier New', Courier, monospace; /* Monospace for password */
-  background-color: var(--input-bg-color);
+  background-color: var(--background-color); /* White background for the span */
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
-  border: 1px solid var(--input-border-color);
+  border: 1px solid var(--border-color); /* Use standard border */
   flex-grow: 1;
   min-width: 100px; /* Ensure minimum width */
   word-break: break-all;
 }
 
 .password-value button {
-  background-color: var(--secondary-color);
-  border: 1px solid var(--input-border-color);
+  background-color: var(--background-color); /* White background */
+  border: 1px solid var(--border-color); /* Standard border */
   color: var(--text-secondary);
   border-radius: var(--border-radius);
   padding: 0.4rem 0.6rem;
@@ -440,9 +575,9 @@ body {
 }
 
 .password-value button:hover {
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-  background-color: rgba(108, 99, 255, 0.05);
+  border-color: var(--link-color); /* Use link color */
+  color: var(--link-color);
+  background-color: rgba(74, 144, 226, 0.05); /* Adjusted hover background */
 }
 
 .no-passwords {
@@ -505,6 +640,66 @@ body {
   }
 }
 
+/* Skeleton Loading Styles */
+.skeleton-item {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* Important for shimmer effect */
+  position: relative; /* Important for shimmer effect */
+}
+
+.skeleton-line {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  height: 1em; /* Default height, can be overridden */
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-title {
+  height: 1.2rem; /* Match h4 size */
+  width: 60%;
+  margin-bottom: 1rem;
+}
+
+.skeleton-text {
+  height: 1rem; /* Match text size */
+  width: 80%;
+}
+
+.skeleton-button {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--border-radius);
+  width: 36px; /* Approximate button size */
+  height: 36px; /* Approximate button size */
+}
+
+.skeleton-copy-button {
+  width: 80px; /* Approximate copy button size */
+  height: 30px;
+}
+
+.password-item.skeleton-item .password-item-header,
+.password-item.skeleton-item .password-value {
+  opacity: 0.7; /* Make skeleton slightly transparent */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 @media (max-width: 480px) {
   .dashboard-container {
     padding: 1rem;
@@ -542,5 +737,65 @@ body {
 
   .password-item-header h4 {
     font-size: 1.1rem;
+  }
+}
+
+/* Skeleton Loading Styles */
+.skeleton-item {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* Important for shimmer effect */
+  position: relative; /* Important for shimmer effect */
+}
+
+.skeleton-line {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  height: 1em; /* Default height, can be overridden */
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-title {
+  height: 1.2rem; /* Match h4 size */
+  width: 60%;
+  margin-bottom: 1rem;
+}
+
+.skeleton-text {
+  height: 1rem; /* Match text size */
+  width: 80%;
+}
+
+.skeleton-button {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--border-radius);
+  width: 36px; /* Approximate button size */
+  height: 36px; /* Approximate button size */
+}
+
+.skeleton-copy-button {
+  width: 80px; /* Approximate copy button size */
+  height: 30px;
+}
+
+.password-item.skeleton-item .password-item-header,
+.password-item.skeleton-item .password-value {
+  opacity: 0.7; /* Make skeleton slightly transparent */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }

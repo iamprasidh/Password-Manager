@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../styles/Dashboard.css';
 import PasswordForm from './PasswordForm';
 import PasswordItem from './PasswordItem';
+import SkeletonPasswordItem from './SkeletonPasswordItem'; // Import the skeleton component
 
 const Dashboard = () => {
   const { user, logout } = useContext(AuthContext);
@@ -22,6 +23,8 @@ const Dashboard = () => {
     try {
       setLoading(true);
       const response = await axios.get('http://localhost:8000/passwords/');
+      // Add a temporary delay to simulate loading
+      await new Promise(resolve => setTimeout(resolve, 2000)); 
       setPasswords(response.data);
       setError(null);
     } catch (err) {
@@ -125,16 +128,22 @@ const Dashboard = () => {
       <div className="passwords-list">
         <h3>Your Passwords</h3>
         {loading ? (
-          <p>Loading passwords...</p>
+          // Display multiple skeleton items while loading
+          <>
+            <SkeletonPasswordItem />
+            <SkeletonPasswordItem />
+            <SkeletonPasswordItem />
+          </>
         ) : passwords.length === 0 ? (
-          <p>No passwords saved yet. Add your first password using the button above.</p>
+          <p className="no-passwords">No passwords saved yet. Add your first password using the button above.</p> // Added class for styling
         ) : (
-          passwords.map(password => (
+          passwords.map((password, index) => (
             <PasswordItem
               key={password.id}
               password={password}
               onEdit={() => startEditing(password)}
               onDelete={() => handleDeletePassword(password.id)}
+              style={{ '--animation-order': index }} // Add animation delay style
             />
           ))
         )}
